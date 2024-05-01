@@ -1,27 +1,39 @@
-using Kanafka.Admin.Application.FailedMessages.Repositories;
-using Kanafka.Admin.Domain.Models;
+using Kanafka.Admin.Application.FailedMessages.Handlers.GetFailedMessagesList;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Kanafka.Admin.Api.Controllers;
 
+/// <summary>
+/// Controller to interact with failed messages.
+/// </summary>
 [ApiController]
 [Route("[controller]/[action]")]
 public class FailuresController : Controller
 {
-    private readonly IFailedMessageRepository _failedMessageRepository;
+    /// <summary>
+    /// Mediatr sender interface.
+    /// </summary>
+    private readonly ISender _sender;
 
-    public FailuresController(IFailedMessageRepository failedMessageRepository)
+    public FailuresController(ISender sender)
     {
-        _failedMessageRepository = failedMessageRepository;
+        _sender = sender;
     }
 
+    /// <summary>
+    /// Endpoint to fetch a paginated result for failed messages from the data source.
+    /// </summary>
+    /// <param name="request">The pagination request of type <see cref="GetFailedMessagesListRequest"/></param>
+    /// <param name="cancellationToken">Cancellation token.</param>
+    /// <returns>Status code 200 and as data - paginated result <see cref="GetFailedMessagesListResponse"/></returns>
     [HttpGet]
-    public async Task<IActionResult> GetList(int page, int size, CancellationToken cancellationToken)
+    public async Task<IActionResult> GetList(
+        [FromQuery] GetFailedMessagesListRequest request,
+        CancellationToken cancellationToken)
     {
-        //todo mediatr
-        var t = await _failedMessageRepository.GetPagedListAsync(
-            new PagedRequest(1, 1), cancellationToken);
+        var result = await _sender.Send(request, cancellationToken);
 
-        return Ok(t);
+        return Ok(result);
     }
 }
