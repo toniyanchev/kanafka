@@ -8,13 +8,13 @@ namespace Kanafka.Admin.Application.FailedMessages.Handlers.GetFailedMessagesLis
 /// </summary>
 public class GetFailedMessagesListResponse
 {
-    public GetFailedMessagesListResponse(PagedResult<FailedMessageDto> pagedResult)
+    public GetFailedMessagesListResponse(PagedResult<FailedMessageShortDto> pagedResult)
     {
         PagedResult = pagedResult;
     }
 
     /// <summary>
-    /// Pagination data model. See: <see cref="PagedResult"/>&lt;<see cref="FailedMessageDto"/>&gt;
+    /// Pagination data model. See - <see cref="PagedResult"/>&lt;<see cref="FailedMessageShortDto"/>&gt;
     /// </summary>
-    public PagedResult<FailedMessageDto> PagedResult { get; set; }
+    public PagedResult<FailedMessageShortDto> PagedResult { get; set; }
 }

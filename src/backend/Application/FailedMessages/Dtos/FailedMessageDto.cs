@@ -1,32 +1,47 @@
 namespace Kanafka.Admin.Application.FailedMessages.Dtos;
 
 /// <summary>
-/// Data transfer object for failed message. Short segment of data.
+/// Data transfer object for failed message. Extended segment of failed message data.
 /// </summary>
-public class FailedMessageDto
+public class FailedMessageDto : FailedMessageShortDto
 {
     /// <summary>
-    /// Failed message id from the data source.
+    /// Content of the kafka message in JSON string format.
     /// </summary>
-    public required Guid Id { get; set; }
+    public required string MessageBody { get; set; }
+    
+    /// <summary>
+    /// Headers of the kafka message in JSON string format.
+    /// </summary>
+    public string? MessageHeaders { get; set; }
 
     /// <summary>
-    /// Date and time when the message failed.
+    /// The type of the exception that has been thrown when the message failed consumption.
     /// </summary>
-    public required DateTime FailedOn { get; set; }
+    public string? ExceptionType { get; set; }
 
     /// <summary>
-    /// Name of the kafka topic.
+    /// The message of the exception that has been thrown when the message failed consumption.
     /// </summary>
-    public required string Topic { get; set; }
+    public string? ExceptionMessage { get; set; }
 
     /// <summary>
-    /// Kafka message id.
+    /// The stack trace of the exception that has been thrown when the message failed consumption.
     /// </summary>
-    public required Guid MessageId { get; set; }
+    public string? ExceptionStackTrace { get; set; }
+    
+    /// <summary>
+    /// The type of the inner exception that has been thrown when the message failed consumption.
+    /// </summary>
+    public string? InnerExceptionType { get; set; }
 
     /// <summary>
-    /// The amount of retries for this failed message.
+    /// The message of the inner exception that has been thrown when the message failed consumption.
     /// </summary>
-    public required int Retries { get; set; }
+    public string? InnerExceptionMessage { get; set; }
+    
+    /// <summary>
+    /// Date and time of the last archive of the failed message.
+    /// </summary>
+    public DateTime? ArchivedOn { get; set; }
 }

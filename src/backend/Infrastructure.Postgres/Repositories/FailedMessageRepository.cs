@@ -16,14 +16,15 @@ public class FailedMessageRepository : IFailedMessageRepository
         _kanafkaContext = kanafkaContext;
     }
 
-    public async Task<PagedResult<FailedMessageDto>> GetPagedListAsync(
+    // todo - refactor in two methods: one for count and other for items. pagination calcs in mediatr.
+    public async Task<PagedResult<FailedMessageShortDto>> GetPagedListAsync(
         PagedRequest pagedRequest,
         CancellationToken cancellationToken)
     {
         var query = _kanafkaContext.FailedMessages
             .OrderByDescending(x => x.FailedOn)
             .Where(x => x.State == FailedMessageState.New)
-            .Select(x => new FailedMessageDto
+            .Select(x => new FailedMessageShortDto
             {
                 Id = x.Id,
                 FailedOn = x.FailedOn,
@@ -32,7 +33,7 @@ public class FailedMessageRepository : IFailedMessageRepository
                 Retries = x.Retries
             });
 
-        var result = new PagedResult<FailedMessageDto>
+        var result = new PagedResult<FailedMessageShortDto>
         {
             CurrentPage = pagedRequest.PageNumber,
             PageSize = pagedRequest.PageSize,
@@ -50,4 +51,24 @@ public class FailedMessageRepository : IFailedMessageRepository
 
         return result;
     }
+
+    public async Task<FailedMessageDto?> GetAsync(Guid id, CancellationToken cancellationToken)
+        => await _kanafkaContext.FailedMessages
+            .Where(x => x.Id == id)
+            .Select(x => new FailedMessageDto
+            {
+                Id = x.Id,
+                FailedOn = x.FailedOn,
+                Topic = x.Topic,
+                MessageId = x.MessageId,
+                Retries = x.Retries,
+                MessageBody = x.MessageBody,
+                MessageHeaders = x.MessageHeaders,
+                ExceptionType = x.ExceptionType,
+                ExceptionMessage = x.ExceptionMessage,
+                ExceptionStackTrace = x.ExceptionStackTrace,
+                InnerExceptionType = x.InnerExceptionType,
+                InnerExceptionMessage = x.InnerExceptionMessage,
+                ArchivedOn = x.ArchivedOn
+            }).FirstOrDefaultAsync(cancellationToken);
 }
