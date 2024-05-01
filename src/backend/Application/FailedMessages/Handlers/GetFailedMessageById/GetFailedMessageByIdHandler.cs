@@ -3,11 +3,11 @@ using MediatR;
 
 namespace Kanafka.Admin.Application.FailedMessages.Handlers.GetFailedMessageById;
 
-public class GetFailedMessageById : IRequestHandler<GetFailedMessageByIdRequest, GetFailedMessageByIdResponse>
+public class GetFailedMessageByIdHandler : IRequestHandler<GetFailedMessageByIdRequest, GetFailedMessageByIdResponse>
 {
     private readonly IFailedMessageRepository _failedMessageRepository;
 
-    public GetFailedMessageById(IFailedMessageRepository failedMessageRepository)
+    public GetFailedMessageByIdHandler(IFailedMessageRepository failedMessageRepository)
     {
         _failedMessageRepository = failedMessageRepository;
     }

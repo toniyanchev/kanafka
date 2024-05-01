@@ -71,4 +71,17 @@ public class FailedMessageRepository : IFailedMessageRepository
                 InnerExceptionMessage = x.InnerExceptionMessage,
                 ArchivedOn = x.ArchivedOn
             }).FirstOrDefaultAsync(cancellationToken);
+
+    public async Task<List<FailedMessage>> GetAsync(IEnumerable<Guid> ids, CancellationToken cancellationToken)
+        => await _kanafkaContext.FailedMessages
+            .Where(x => ids.Contains(x.Id))
+            .ToListAsync(cancellationToken);
+
+    public async Task UpdateStateAsync(IEnumerable<Guid> ids, FailedMessageState state,
+        CancellationToken cancellationToken)
+    {
+        await _kanafkaContext.FailedMessages
+            .Where(x => ids.Contains(x.Id))
+            .ExecuteUpdateAsync(x => x.SetProperty(p => p.State, _ => state), cancellationToken);
+    }
 }

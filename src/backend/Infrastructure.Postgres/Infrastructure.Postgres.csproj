@@ -9,6 +9,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\..\..\kanafka-dotnet-storage-providers\postgres\Kanafka.Postgres.csproj" />
       <ProjectReference Include="..\Application\Application.csproj" />
     </ItemGroup>
 

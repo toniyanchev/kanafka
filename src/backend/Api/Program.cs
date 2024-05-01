@@ -1,12 +1,18 @@
+using Kanafka;
+using Kanafka.Admin.Api.Consumers;
 using Kanafka.Admin.Application;
-using Kanafka.Admin.Infrastructure.Postgres;
+using Kanafka.Admin.Domain;
+using Kanafka.Admin.Infrastructure.Core;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 builder.Services.AddApplicationServices();
-builder.Services.AddPostgresInfrastructureServices(builder.Configuration);
+builder.Services.AddInfrastructureServices(builder.Configuration);
+
+// Kanafka Consumers
+builder.Services.AddKanafkaConsumer<ReproduceConsumer>(Topics.ReproduceMessages);
 
 var app = builder.Build();
 

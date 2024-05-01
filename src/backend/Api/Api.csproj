@@ -14,7 +14,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Infrastructure.Postgres\Infrastructure.Postgres.csproj" />
+      <ProjectReference Include="..\Infrastructure.Core\Infrastructure.Core.csproj" />
     </ItemGroup>
+
 
 </Project>

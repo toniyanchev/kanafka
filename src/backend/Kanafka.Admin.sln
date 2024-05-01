@@ -15,6 +15,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "infras", "infras", "{3A53A4
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "webs", "webs", "{E02D319F-51C7-448F-92C2-B377F073E52F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "for_delete", "for_delete", "{0EC38545-E423-4C4E-91E4-84D3E47F0F99}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kanafka.Postgres", "..\..\..\kanafka-dotnet-storage-providers\postgres\Kanafka.Postgres.csproj", "{AC71BDBB-B2DA-43BA-B2E1-1C9920B9F853}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Core", "Infrastructure.Core\Infrastructure.Core.csproj", "{593304F4-7768-4DF4-9B27-D2A9ED3AAC7D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,9 +46,19 @@ Global
 		{3F6F749C-2667-4BB3-87D1-7C20D3FF068A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F6F749C-2667-4BB3-87D1-7C20D3FF068A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F6F749C-2667-4BB3-87D1-7C20D3FF068A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC71BDBB-B2DA-43BA-B2E1-1C9920B9F853}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC71BDBB-B2DA-43BA-B2E1-1C9920B9F853}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC71BDBB-B2DA-43BA-B2E1-1C9920B9F853}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC71BDBB-B2DA-43BA-B2E1-1C9920B9F853}.Release|Any CPU.Build.0 = Release|Any CPU
+		{593304F4-7768-4DF4-9B27-D2A9ED3AAC7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{593304F4-7768-4DF4-9B27-D2A9ED3AAC7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{593304F4-7768-4DF4-9B27-D2A9ED3AAC7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{593304F4-7768-4DF4-9B27-D2A9ED3AAC7D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{3F6F749C-2667-4BB3-87D1-7C20D3FF068A} = {E02D319F-51C7-448F-92C2-B377F073E52F}
 		{A5D512D3-72C1-4E9A-ADF0-D922675CBD38} = {3A53A425-A611-44E0-8B89-3893EDCA7040}
+		{AC71BDBB-B2DA-43BA-B2E1-1C9920B9F853} = {0EC38545-E423-4C4E-91E4-84D3E47F0F99}
+		{593304F4-7768-4DF4-9B27-D2A9ED3AAC7D} = {3A53A425-A611-44E0-8B89-3893EDCA7040}
 	EndGlobalSection
 EndGlobal
