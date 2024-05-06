@@ -55,7 +55,11 @@ const ApplicationBar: React.FC = () => {
             <Box
               component='img'
               src={`${process.env.PUBLIC_URL}/logo192.png`}
-              sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}
+              sx={{
+                display: { xs: 'none', md: 'flex' },
+                mr: 1,
+                cursor: 'pointer'
+              }}
               onClick={() => goToPage('')}
               width={60}
               height={60}
@@ -93,10 +97,7 @@ const ApplicationBar: React.FC = () => {
             >
               {pages.map(page => (
                 <MenuItem key={page} onClick={() => goToPage(page)}>
-                  <Typography
-                    textAlign='center'
-                    sx={{ color: 'secondary', fontWeight: 'bold' }}
-                  >
+                  <Typography textAlign='center' sx={{ color: 'secondary' }}>
                     {page}
                   </Typography>
                 </MenuItem>
@@ -106,7 +107,12 @@ const ApplicationBar: React.FC = () => {
           <Box
             component='img'
             src={`${process.env.PUBLIC_URL}/logo192.png`}
-            sx={{ display: { xs: 'flex', md: 'none' }, mt: 0.5, mb: 0.5 }}
+            sx={{
+              display: { xs: 'flex', md: 'none' },
+              mt: 0.5,
+              mb: 0.5,
+              cursor: 'pointer'
+            }}
             onClick={() => goToPage('')}
             width={60}
             height={60}
