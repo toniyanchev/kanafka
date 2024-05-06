@@ -5,7 +5,7 @@ project.lock.json
 *.pyc
 nupkg/
 
-backend/Api/appsettings.Development.json
+src/backend/Api/appsettings.Development.json
 
 # Visual Studio Code
 .vscode/
