@@ -6,6 +6,21 @@ using Kanafka.Admin.Infrastructure.Core;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+    var kanafkaAllowedOrigins = builder.Configuration.GetSection("KanafkaAllowedOrigins").Get<string[]>();
+    options.AddPolicy(name: "KanafkaCorsPolicy",
+        corsPolicyBuilder =>
+        {
+            corsPolicyBuilder.AllowAnyHeader().AllowAnyMethod();
+
+            if (kanafkaAllowedOrigins is not null)
+                corsPolicyBuilder.WithOrigins(kanafkaAllowedOrigins);
+            else
+                corsPolicyBuilder.AllowAnyOrigin();
+        });
+});
+
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 builder.Services.AddApplicationServices();
@@ -24,5 +39,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseRouting();
 app.MapControllers();
+app.UseCors("KanafkaCorsPolicy");
 
 app.Run();
