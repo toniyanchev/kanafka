@@ -17,7 +17,7 @@ public class GetFailedMessagesListHandler : IRequestHandler<GetFailedMessagesLis
         GetFailedMessagesListRequest request,
         CancellationToken cancellationToken)
     {
-        var pagedRequest = new PagedRequest(request.PageNumber, request.PageNumber);
+        var pagedRequest = new PagedRequest(request.PageNumber, request.PageSize);
         var pagedResult = await _failedMessageRepository.GetPagedListAsync(pagedRequest, cancellationToken);
 
         return new GetFailedMessagesListResponse(pagedResult);
